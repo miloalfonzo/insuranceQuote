@@ -51,7 +51,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-function Form({setSummary}) {
+function Form({setSummary, setLoading}) {
   const [data, setData] = useState({
     brand: "",
     year: "",
@@ -95,11 +95,19 @@ function Form({setSummary}) {
     const incPlan = getPlan(plan);
     result = parseFloat( incPlan * result ).toFixed(2);
 
-    setSummary({
-      quotation: result,
-      data
-    })
+    setLoading(true);
 
+    setTimeout(() => {
+
+      setLoading(false);
+
+      setSummary({
+        quotation: result,
+        data
+      })
+    }, 3000);
+
+   
   };
 
   return (
