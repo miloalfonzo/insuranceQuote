@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { getDifYear, calcBrand, getPlan } from "../helper";
 
 const ContCamp = styled.div`
   display: flex;
@@ -75,9 +76,25 @@ function Form() {
     }
     setError(false);
 
+    let result = 2000;
+
     //get difference betweeen years
 
+    const difference = getDifYear(year);
+
+    // console.log(difference);
+
     //each year is 3% cheaper
+
+    result -= ((difference * 3) * result) / 100;
+
+    result = calcBrand(brand) * result;
+
+    // console.log(result);
+
+    const incPlan = getPlan(plan);
+    result = parseFloat( incPlan * result ).toFixed(2);
+
   };
 
   return (
@@ -88,9 +105,9 @@ function Form() {
           <Label>Marca</Label>
           <Select name="brand" value={brand} onChange={getInfo}>
             <option value="">--Selecciones --</option>
-            <option value="americano">Americano</option>
-            <option value="europeo">Europeo</option>
-            <option value="asiatico">Asiatico</option>
+            <option value="american">Americano</option>
+            <option value="european">Europeo</option>
+            <option value="asian">Asiatico</option>
           </Select>
         </ContCamp>
         <ContCamp>
