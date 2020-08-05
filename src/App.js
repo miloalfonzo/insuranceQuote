@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Summary from "./components/Summary";
-
+import Result from "./components/Result";
 
 const Container = styled.div`
   max-width: 600px;
@@ -25,7 +25,7 @@ function App() {
      }
   });
 
-  const {data} = summary;
+  const {quotation, data} = summary;
 
   return (
     <Container>
@@ -34,6 +34,9 @@ function App() {
         <Form setSummary={setSummary} />
        <Summary 
        data={data} />
+       <Result 
+        quotation={quotation}
+       />
       </ContForm>
     </Container>
   );
